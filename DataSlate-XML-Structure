@@ -1,0 +1,224 @@
+Understanding XML Structure and Interconnections
+
+Overview
+
+This document provides an in-depth explanation of how DataSlate XML files are structured and interconnected. It focuses on the relationships between game systems, faction-specific catalogues, and shared libraries, using the provided files as examples.
+
+Core Components
+
+1. Game System File (Warhammer 40,000.gst):
+
+The game system file defines the foundation for all related catalogues. It specifies global settings, categories, and rules applicable across all factions within the system.
+
+Attributes:
+
+id: Unique identifier for the game system (e.g., sys-352e-adc2-7639-d6a9).
+
+name: Name of the game system (e.g., "Warhammer 40,000 10th Edition").
+
+revision: Version of the game system.
+
+Key Elements:
+
+publications: Lists official rules or supplements.
+
+costTypes: Defines cost metrics (e.g., points, power levels).
+
+profileTypes: Specifies the types of profiles (e.g., unit stats like Movement, Weapon Skill).
+
+categoryEntries: Defines categories used to organize units or upgrades (e.g., HQ, Troops).
+
+forceEntries: Represents structural data for creating army lists.
+
+2. Faction-Specific Catalogues
+
+Faction catalogues define the rules, units, and upgrades unique to a specific faction. They reference the game system file and may link to shared libraries for common data.
+
+Example: T'au Empire.cat
+
+Attributes:
+
+id: Unique identifier for the catalogue (e.g., d81a-61dd-6d27-a3ce).
+
+gameSystemId: Matches the ID of the game system (e.g., sys-352e-adc2-7639-d6a9).
+
+name: Faction name (e.g., "T'au Empire").
+
+Key Elements:
+
+rules: Contains faction-specific rules (e.g., "For The Greater Good").
+
+sharedSelectionEntries: Lists units, upgrades, or abilities shared within the faction.
+
+entryLinks: References to shared or external data.
+
+Example: Aeldari - Drukhari.cat
+
+Similar structure to T'au Empire.cat but includes:
+
+catalogueLinks: Links to a shared library (Aeldari - Aeldari Library).
+
+Drukhari-specific units and rules.
+
+3. Shared Library
+
+Shared libraries store common data used across multiple factions. This avoids redundancy and ensures consistency.
+
+Example: Aeldari - Aeldari Library.cat
+
+Attributes:
+
+library: Set to true, indicating it is a shared library.
+
+id: Unique identifier for the library (e.g., dfcf-1214-b57-2205).
+
+Key Elements:
+
+publications: Lists rules and supplements shared across Aeldari factions.
+
+categoryEntries: Defines shared categories (e.g., "Aeldari Infantry").
+
+sharedSelectionEntries: Provides shared units and upgrades.
+
+sharedRules: Rules applicable to all Aeldari factions.
+
+4. Faction-Specific Extensions
+
+Faction-specific extensions build upon shared libraries to define unique rules and units for sub-factions.
+
+Example: Aeldari - Craftworlds.cat
+
+Attributes:
+
+library: Set to false, indicating it is a standalone catalogue.
+
+catalogueLinks: References the shared Aeldari - Aeldari Library.
+
+Key Elements:
+
+entryLinks: Craftworld-specific units and upgrades (e.g., "Wraithguard").
+
+catalogueLinks: Connects to shared Aeldari data.
+
+Expanded Components
+
+The following fields provide additional depth to the structure and functionality of DataSlate XML files:
+
+1. conditionGroups & conditionGroup
+
+Logical structures for grouping multiple conditions.
+
+Examples:
+
+A conditionGroup may require either "HQ" or "Troops" categories to be present.
+
+2. condition
+
+Specifies criteria or requirements for rules, modifiers, or selections.
+
+Examples:
+
+Checking if a unit belongs to a specific category.
+
+Verifying a point limit before allowing selection.
+
+3. modifier
+
+Applies changes to attributes, costs, or other properties.
+
+Examples:
+
+Adding a cost modifier when an upgrade is selected.
+
+Enabling or disabling specific selections.
+
+4. categoryLinks
+
+Connects entries to predefined categories, helping organize units or upgrades.
+
+Examples:
+
+Linking a unit to the "Elites" category.
+
+5. profile
+
+Represents a set of characteristics for units or equipment.
+
+Examples:
+
+Weapon profiles (e.g., Range, Strength, AP).
+
+Unit abilities (e.g., Movement, Toughness).
+
+6. characteristics
+
+Detailed attributes within a profile.
+
+Examples:
+
+A weapon profile might have Range: 24", Strength: 4, Damage: 1.
+
+7. infoLink
+
+Provides external references or additional descriptive text.
+
+Examples:
+
+Linking to background lore for a unit.
+
+8. selectionEntry
+
+Defines selectable options, such as units or upgrades.
+
+Examples:
+
+A unit like "Fire Warriors."
+
+An upgrade like "Bonding Knife Ritual."
+
+9. constraints
+
+Specifies limitations or restrictions on selections.
+
+Examples:
+
+A limit of 3 for a specific unit in an army.
+
+Requiring a unit to have a specific keyword to be selected.
+
+Relationships and Dependencies
+
+Game System to Catalogues:
+
+The game system provides the framework. Each catalogue must reference its gameSystemId to ensure compatibility.
+
+Shared Libraries:
+
+Catalogues reference shared libraries using catalogueLinks to avoid duplication of common units or rules.
+
+Catalogue-Specific Data:
+
+Faction-specific catalogues define unique elements while leveraging shared data through entryLinks.
+
+Practical Usage
+
+Adding a New Faction
+
+Create a new .cat file.
+
+Reference the gameSystemId of the game system.
+
+Define faction-specific units, upgrades, and rules.
+
+Link to shared libraries as needed for common units.
+
+Modifying Shared Data
+
+Update the shared library .cat file.
+
+Ensure referencing catalogues are updated with the latest revisions.
+
+Conclusion
+
+DataSlate files are modular and interconnected. The game system defines global rules, while catalogues provide faction-specific details. Shared libraries ensure consistency and reduce redundancy across related factions. By following this structure, you can effectively manage and expand DataSlate data.
+
