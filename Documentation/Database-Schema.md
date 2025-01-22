@@ -213,6 +213,3 @@ The schema uses **MongoDB** as the database system due to its flexibility in han
 2. **Simplicity**: Queries are straightforward, targeting specific collections.
 3. **Scalability**: The schema accommodates future additions without significant refactoring.
 4. **Normalization**: Data is organized logically to reflect the XML structure while maintaining flexibility.
-
-Let me know if you need further adjustments or optimizations!
-
