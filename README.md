@@ -8,7 +8,7 @@ With 12 years of experience in IT, primarily within the MSP sector, I've had the
 As a lifelong tabletop gaming enthusiast, I’ve spent countless hours crafting and tweaking army lists, often relying on BattleScribe as my go-to tool. Inspired by the dedication of the community and the ongoing efforts to maintain BSDATA repositories, I decided to channel my passion and expertise into developing a web-based application for fellow hobbyists.
 
 ## Current Progress
-- **Database Integration**: Successfully built a script that pulls, converts, and imports XML data structures into the database. Testing linked entries via their IDs and querying functionality has been promising.
+- **Database Integration**: Completed conversion of the XML structure and wahapedia into JSON, Applied into a Database with multiple collections and tested querying.
 - **Backend Development**: Currently focused on creating the core "Army Builder" backend. Key features under development include:
   - Querying and validating list entries.
   - Enforcing constraints, such as point limits and unit caps.
